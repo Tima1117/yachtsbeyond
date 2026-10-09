@@ -5,18 +5,18 @@ import {useMotionValueEvent,useReducedMotion,useScroll} from "framer-motion";
 import MarineScene, {type MarineDrive} from "./marine-scene";
 export type GlobeCopy={eyebrow:string;top:string;lines:string[];lede:string;cta:string;cta2:string;rating:string;hint:string;badges:[string,string][];modes?:string[]};
 export function HeroGlobe({c,wa}:{c:GlobeCopy;wa:string}){
- const root=useRef<HTMLElement>(null);const reduced=useReducedMotion();const [ready,setReady]=useState(false);const [active,setActive]=useState(true);const [supported,setSupported]=useState(true);const [p,setP]=useState(0);const [dragging,setDragging]=useState(false);
+ const root=useRef<HTMLElement>(null);const reduced=useReducedMotion();const [ready,setReady]=useState(false);const [active,setActive]=useState(true);const [supported,setSupported]=useState<boolean|null>(null);const [p,setP]=useState(0);const [dragging,setDragging]=useState(false);
  const drive=useRef<MarineDrive>({p:0,x:0,y:0,drag:0,reduced:false});const down=useRef<number|null>(null);
  const {scrollYProgress}=useScroll({target:root,offset:["start start","end end"]});
  useMotionValueEvent(scrollYProgress,"change",v=>{drive.current.p=v;setP(v)});
  useEffect(()=>{drive.current.reduced=!!reduced;},[reduced]);
- useEffect(()=>{try{const cv=document.createElement("canvas");setSupported(!!cv.getContext("webgl2"));}catch{setSupported(false)}},[]);
+ useEffect(()=>{try{const cv=document.createElement("canvas");const gl=cv.getContext("webgl2");setSupported(!!gl);gl?.getExtension("WEBGL_lose_context")?.loseContext();}catch{setSupported(false)}},[]);
  useEffect(()=>{const el=root.current;if(!el)return;const io=new IntersectionObserver(([entry])=>setActive(entry.isIntersecting));io.observe(el);return()=>io.disconnect()},[]);
  const loaded=useCallback(()=>setReady(true),[]);
  const labels=c.modes||["At sea","Above it all","Your escape"];
  const jump=(i:number)=>{if(!root.current)return;const r=root.current.getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top+(root.current.offsetHeight-innerHeight)*i/2,behavior:reduced?"instant":"smooth"})};
  const chapter=p<.34?0:p<.72?1:2;
- return <section ref={root} className={`voyage-hero${reduced?" reduced":""}`} id="top" aria-label={c.top}>
+ return <section ref={root} className={`voyage-hero${reduced?" reduced":""}`} id="top" aria-label={c.top} data-scene-state={ready?"ready":supported===false?"fallback":"loading"}>
   <div className="voyage-stage">
    <div className="voyage-halo"/>
    <div className="voyage-type" aria-hidden style={{transform:`translateX(${-p*18}vw) translateY(${-p*12}vh)`,opacity:1-p*.9}}>YACHTS</div>
