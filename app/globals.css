@@ -7,8 +7,8 @@
   --navy:#070d1a;
   --navy2:#0e1729;
   --navy3:#162238;
-  --accent:#c6f135;
-  --accent-dark:#6f9a0f;
+  --accent:#f2a18a;
+  --accent-dark:#9a4b38;
   --sea:#4fd1c5;
   --gold:#f2b134;
   --muted:#6b7280;
@@ -64,8 +64,8 @@ html[lang=ka] .section-title{letter-spacing:-.015em;font-size:clamp(28px,3.4vw,5
 /* ─── Buttons ─────────────────────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-family:var(--fb);font-size:14px;font-weight:800;letter-spacing:.01em;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn-amber{background:var(--accent);color:var(--ink);box-shadow:0 14px 30px -12px rgba(198,241,53,.55)}
-.btn-amber:hover{background:#d6ff4a}
+.btn-amber{background:var(--accent);color:var(--ink);box-shadow:0 14px 30px -12px rgba(242,161,138,.55)}
+.btn-amber:hover{background:#ffc0ac}
 .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.35);backdrop-filter:blur(6px)}
 .btn-ghost:hover{border-color:#fff}
 .btn-wa{background:var(--wa);color:#fff}
@@ -77,11 +77,11 @@ html[lang=ka] .section-title{letter-spacing:-.015em;font-size:clamp(28px,3.4vw,5
 /* ─── Globe hero ─────────────────────────────────────────────────────────── */
 .ghero{position:relative;height:170vh;background:var(--navy);--p:0}
 .ghero-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--navy)}
-.ghero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 78% 50%,rgba(198,241,53,.10),transparent 60%),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(79,209,197,.08),transparent 60%),linear-gradient(to bottom,#070d1a,#0a1222 60%,#070d1a)}
+.ghero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 78% 50%,rgba(242,161,138,.10),transparent 60%),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(79,209,197,.08),transparent 60%),linear-gradient(to bottom,#070d1a,#0a1222 60%,#070d1a)}
 .ghero-globe{position:absolute;right:-6vw;top:50%;width:min(62vw,920px);aspect-ratio:1;transform:translateY(-50%);cursor:grab;touch-action:pan-y;z-index:1}
 .ghero-globe:active{cursor:grabbing}
 .ghero-globe canvas{display:block;width:100%!important;height:100%!important}
-.ghero-fallback{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1d2d4d,#0a1326 60%,#070d1a 75%);box-shadow:0 0 80px rgba(198,241,53,.12) inset,0 0 120px rgba(198,241,53,.08)}
+.ghero-fallback{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1d2d4d,#0a1326 60%,#070d1a 75%);box-shadow:0 0 80px rgba(242,161,138,.12) inset,0 0 120px rgba(242,161,138,.08)}
 .ghero-copy{position:absolute;left:max(40px,calc(50% - 620px));top:50%;transform:translateY(calc(-50% - var(--p)*120px));max-width:620px;z-index:2;color:#fff;opacity:calc(1 - var(--p)*1.7);pointer-events:auto}
 .ghero-title{font-family:var(--fd);font-weight:800;letter-spacing:-.045em;line-height:.98;margin:0 0 22px;color:#fff}
 .ghero-top{display:block;font-size:clamp(46px,6.4vw,104px)}
@@ -112,7 +112,7 @@ html[lang=ka] .ghero-line{font-size:clamp(24px,3vw,46px)}
 .fact-text{position:absolute;left:18px;right:18px;bottom:16px;color:#fff}
 .fact-text b{display:block;font-family:var(--fd);font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:4px}
 .fact-text span{display:block;font-size:13px;color:rgba(255,255,255,.72)}
-.fact::before{content:"";position:absolute;left:18px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(198,241,53,.22);z-index:2}
+.fact::before{content:"";position:absolute;left:18px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(242,161,138,.22);z-index:2}
 
 /* ─── Trips ───────────────────────────────────────────────────────────────── */
 .tours{padding:110px 0 100px;background:var(--bg)}
@@ -204,7 +204,7 @@ html[lang=ka] .ghero-line{font-size:clamp(24px,3vw,46px)}
 .contacts-grid>*{min-width:0}
 .contact-list{display:grid;gap:14px;margin:0 0 28px}
 .contact-row{display:flex;gap:14px;align-items:flex-start}
-.strip-ico{width:42px;height:42px;border-radius:12px;background:rgba(198,241,53,.14);color:var(--accent);display:grid;place-items:center;flex:none}
+.strip-ico{width:42px;height:42px;border-radius:12px;background:rgba(242,161,138,.14);color:var(--accent);display:grid;place-items:center;flex:none}
 .strip-ico svg{width:20px;height:20px}
 .contact-row b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2px}
 .contact-row span,.contact-row a{font-size:16px;font-weight:700}
@@ -301,4 +301,22 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
 @media(prefers-reduced-motion:reduce){
   .ghero-hint-dot{animation:none}
   .ghero-line{animation:none;transition:none}
+}
+/* Sea and sky: real photo, interactive framing. */
+.sea-hero{background:radial-gradient(ellipse at 90% 40%,#17394b 0,transparent 58%),var(--navy);color:#fff;overflow:clip;padding:148px 0 76px;min-height:100svh}
+.sea-hero-inner{width:min(1320px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.sea-copy{position:relative;z-index:2}.sea-copy .ghero-top{font-size:clamp(50px,6.1vw,90px)}.sea-copy .ghero-line{font-size:clamp(32px,3.5vw,52px);margin-top:20px}.sea-copy .ghero-lede{font-size:16px}.sea-copy .ghero-badges{gap:24px}
+.sea-visual{position:relative;min-width:0;perspective:1200px}
+.sea-frame{position:relative;aspect-ratio:1.08;border-radius:170px 170px 24px 24px;overflow:hidden;background:#274f6e;border:1px solid rgba(255,255,255,.18);box-shadow:0 36px 80px -35px #0008;isolation:isolate}
+.sea-photo{position:absolute;inset:0;will-change:transform}.sea-photo-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#071425c9,transparent 35%,transparent 80%,#16394b33)}
+.sea-frame-label{position:absolute;bottom:28px;left:30px;display:flex;flex-direction:column;gap:8px;pointer-events:none}.sea-frame-label span{font-size:9px;font-weight:800;letter-spacing:.22em;color:#fff9}.sea-frame-label b{font-family:var(--fs);font-size:34px;font-style:italic;font-weight:500;line-height:1}
+.sea-hotspot{position:absolute;display:flex;align-items:center;gap:8px;color:#fff;border:1px solid #fff6;border-radius:30px;padding:7px 14px 7px 7px;background:#071425a8;backdrop-filter:blur(8px);cursor:pointer;font-size:11px;font-weight:700}.sea-hotspot span{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:var(--navy);font-size:20px}.sea-hotspot:hover{background:#071425e6;transform:scale(1.04)}.sea-hotspot.boat{right:6%;top:62%}.sea-hotspot.air{left:34%;top:12%}
+.sea-controls{display:flex;gap:6px;padding-top:20px}.sea-controls button{flex:1;min-width:0;min-height:50px;padding:10px 6px;border:1px solid #ffffff24;border-radius:12px;background:transparent;color:#fff9;font-size:12px;font-weight:700;cursor:pointer}.sea-controls button span{font-size:9px;margin-right:7px;color:var(--accent)}.sea-controls button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:#f2a18a0d}.sea-hint{display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#fff6;margin:14px 3px 0}
+.gallery{padding-bottom:70px;overflow:hidden}.gallery-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-size:12px;font-weight:700;color:var(--muted)}.gallery-toolbar>div{display:flex;gap:8px}.gallery-toolbar button{border:1px solid #bfb8aa;background:transparent;color:var(--ink);border-radius:99px;min-width:44px;height:44px;cursor:pointer;font-size:20px}.gallery-toolbar .gallery-pause{padding:0 18px;font-size:12px;min-width:100px}.gallery-toolbar button:hover{background:var(--ink);color:var(--bg)}
+.photo-rail{display:flex;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:10px 0 22px;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.photo-rail::-webkit-scrollbar{display:none}.photo-group{display:flex;gap:20px;padding-right:20px;flex:none}.photo-card{position:relative;flex:none;width:310px;height:420px;border:0;padding:0;border-radius:18px;overflow:hidden;cursor:zoom-in;background:var(--navy);text-align:left;color:#fff;transition:transform .35s}.photo-card:nth-child(even){margin-top:24px}.photo-card:hover{transform:translateY(-6px)}.photo-card img{transition:transform .6s}.photo-card:hover img{transform:scale(1.05)}.photo-number{position:absolute;top:16px;left:16px;background:#0714256b;backdrop-filter:blur(8px);border:1px solid #fff3;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:10px}.photo-caption{position:absolute;bottom:0;left:0;right:0;padding:70px 20px 22px;background:linear-gradient(transparent,#071425d9);font-size:15px;font-weight:700;display:flex;gap:12px;align-items:end;justify-content:space-between}.photo-caption>span{font-size:23px;color:var(--accent)}
+@media(max-width:1100px){.sea-hero-inner{gap:32px}.sea-copy .ghero-top{font-size:60px}.sea-frame{border-radius:100px 100px 20px 20px}.sea-copy .ghero-badges{gap:16px}.sea-copy .ghero-badges b{font-size:18px}}
+@media(max-width:860px){.sea-hero{padding:100px 0 44px;min-height:0}.sea-hero-inner{width:calc(100% - 40px);grid-template-columns:minmax(0,1fr);gap:36px}.sea-copy .ghero-top{font-size:clamp(42px,11vw,70px)}.sea-copy .ghero-line{font-size:34px;margin-top:12px}.sea-copy .ghero-lede{font-size:14px;max-width:580px}.sea-copy .ghero-actions{margin-bottom:24px}.sea-frame{aspect-ratio:1.12;border-radius:100px 100px 20px 20px;max-height:560px}.sea-visual{transform:none!important}.sea-copy .ghero-badges{gap:20px}.sea-frame-label{bottom:22px;left:24px}.sea-frame-label b{font-size:28px}.photo-card{width:240px;height:340px}.photo-group{gap:14px;padding-right:14px}.gallery-toolbar{margin-bottom:12px}.photo-caption{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.sea-photo,.sea-frame,.photo-card,.photo-card img{transition:none!important}.ghero-line{animation:none}}
+@media(max-width:860px){
+ .sea-copy{display:contents}.sea-hero-inner{gap:20px}.sea-copy>.eyebrow{margin:0}.sea-copy>.ghero-title{margin:0}.sea-visual{grid-row:3;margin-bottom:8px}.sea-copy .ghero-actions{margin-bottom:4px}.sea-copy .ghero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.sea-controls button{font-size:11px}.sea-copy>.ghero-lede{margin:0}
 }

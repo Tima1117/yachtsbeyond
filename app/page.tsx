@@ -27,7 +27,7 @@ const copy = {
       lede: "Parasailing from the deck of the Mustang speedboat, private boat trips and sunset cruises from the yacht club pier on the boulevard. Captain George answers every message himself.",
       cta: "Choose an experience", cta2: "Write on WhatsApp",
       rating: "4.5 · 44 Google reviews",
-      hint: "Scroll · drag the globe",
+      hint: "Choose your perspective", modes: ["Panorama", "On the water", "In the air"],
       badges: [["100 m", "flight height"], ["10–12 min", "in the air"], ["6+", "tandem age"], ["10:00–22:00", "every day"]],
     } as GlobeCopy,
     facts: [["Take-off from the deck", "No swimming, no wet start"], ["Captain George", "Replies to every review and message"], ["Rainbow chute over the bay", "Photos from the boat included"], ["Yacht club pier", "By the Alphabet tower and the Ferris wheel"]],
@@ -57,7 +57,7 @@ const copy = {
       cta: "Book a flight",
     } as DayCopy,
     revEyebrow: "REVIEWS", revTitle: "What guests say", revLede: "Real reviews from Google Maps. George replies to every one of them.", revMore: "Show more", revGoogle: "All 44 reviews on Google",
-    galEyebrow: "GALLERY", galTitle: "From the sky and the deck", galLede: "Photos from the Mustang and from the harness. Scroll to knock the cards over.",
+    galEyebrow: "GALLERY", galTitle: "From the sky and the deck", galLede: "Real moments from the water and the sky. Pause, browse and open a photo to look closer.",
     conEyebrow: "CONTACTS", conTitle: "Book in two minutes",
     addrLabel: "Pier", addr: "Batumi Yacht Club, boulevard by the Ferris wheel",
     phoneLabel: "Phone", hoursLabel: "Hours", hours: "Every day, 10:00–22:00, May to October",
@@ -82,7 +82,7 @@ const copy = {
       lede: "Парасейлинг прямо с палубы катера Mustang, частные прогулки и закаты в море с пирса яхт-клуба на бульваре. Капитан Георгий отвечает на каждое сообщение сам.",
       cta: "Выбрать", cta2: "Написать в WhatsApp",
       rating: "4.5 · 44 отзыва в Google",
-      hint: "Листайте · крутите глобус",
+      hint: "Выберите свой ракурс", modes: ["Панорама", "На воде", "В небе"],
       badges: [["100 м", "высота полёта"], ["10–12 мин", "в воздухе"], ["6+", "возраст для тандема"], ["10:00–22:00", "ежедневно"]],
     } as GlobeCopy,
     facts: [["Взлёт с палубы", "Без купания и мокрого старта"], ["Капитан Георгий", "Отвечает на каждый отзыв и сообщение"], ["Радужный купол над бухтой", "Фото с катера включены"], ["Пирс яхт-клуба", "У башни Алфавита и колеса обозрения"]],
@@ -112,7 +112,7 @@ const copy = {
       cta: "Забронировать полёт",
     } as DayCopy,
     revEyebrow: "ОТЗЫВЫ", revTitle: "Что говорят гости", revLede: "Настоящие отзывы с Google Maps. Георгий отвечает на каждый.", revMore: "Показать ещё", revGoogle: "Все 44 отзыва в Google",
-    galEyebrow: "ГАЛЕРЕЯ", galTitle: "С неба и с палубы", galLede: "Фото с катера Mustang и из подвески. Листайте, чтобы уронить карточки.",
+    galEyebrow: "ГАЛЕРЕЯ", galTitle: "С неба и с палубы", galLede: "Моменты с воды и с неба. Остановите ленту, полистайте и откройте фото поближе.",
     conEyebrow: "КОНТАКТЫ", conTitle: "Бронь за две минуты",
     addrLabel: "Пирс", addr: "Яхт-клуб Батуми, бульвар у колеса обозрения",
     phoneLabel: "Телефон", hoursLabel: "Часы", hours: "Ежедневно 10:00–22:00, май – октябрь",
@@ -137,7 +137,7 @@ const copy = {
       lede: "პარასეილინგი პირდაპირ კატერ Mustang-ის გემბანიდან, კერძო გასეირნებები და მზის ჩასვლა ზღვაში ბულვარზე იახტკლუბის პირსიდან. კაპიტანი გიორგი ყველა შეტყობინებას თავად პასუხობს.",
       cta: "არჩევა", cta2: "მოწერა WhatsApp-ზე",
       rating: "4.5 · 44 შეფასება Google-ზე",
-      hint: "ჩამოსქროლეთ · დაატრიალეთ გლობუსი",
+      hint: "აირჩიეთ ხედვის კუთხე", modes: ["პანორამა", "წყალზე", "ჰაერში"],
       badges: [["100 მ", "ფრენის სიმაღლე"], ["10–12 წთ", "ჰაერში"], ["6+", "ასაკი ტანდემისთვის"], ["10:00–22:00", "ყოველდღე"]],
     } as GlobeCopy,
     facts: [["აფრენა გემბანიდან", "ბანაობისა და სველი სტარტის გარეშე"], ["კაპიტანი გიორგი", "ყველა შეფასებასა და შეტყობინებას პასუხობს"], ["ცისარტყელა პარაშუტი ყურის თავზე", "ფოტოები კატერიდან შედის ფასში"], ["იახტკლუბის პირსი", "ანბანის კოშკთან და ეშმაკის ბორბალთან"]],
@@ -167,7 +167,7 @@ const copy = {
       cta: "ფრენის დაჯავშნა",
     } as DayCopy,
     revEyebrow: "შეფასებები", revTitle: "რას ამბობენ სტუმრები", revLede: "ნამდვილი შეფასებები Google Maps-დან. გიორგი ყველას პასუხობს.", revMore: "მეტის ჩვენება", revGoogle: "ყველა 44 შეფასება Google-ზე",
-    galEyebrow: "გალერეა", galTitle: "ციდან და გემბანიდან", galLede: "ფოტოები Mustang-იდან და აღკაზმულობიდან. ჩამოსქროლეთ, რომ ბარათები დაეცეს.",
+    galEyebrow: "გალერეა", galTitle: "ციდან და გემბანიდან", galLede: "მომენტები წყლიდან და ციდან. შეაჩერეთ, გადაფურცლეთ და გახსენით ფოტო.",
     conEyebrow: "კონტაქტი", conTitle: "დაჯავშნა ორ წუთში",
     addrLabel: "პირსი", addr: "ბათუმის იახტკლუბი, ბულვარი ეშმაკის ბორბალთან",
     phoneLabel: "ტელეფონი", hoursLabel: "საათები", hours: "ყოველდღე 10:00–22:00, მაისი – ოქტომბერი",
@@ -212,11 +212,6 @@ function SmoothScroll() {
   return null;
 }
 
-function useMobile(bp = 760) {
-  const [m, setM] = useState(false);
-  useEffect(() => { const u = () => setM(window.innerWidth < bp); u(); window.addEventListener("resize", u); return () => window.removeEventListener("resize", u); }, [bp]);
-  return m;
-}
 
 function Trips({ lang, c, onPhoto }: { lang: Lang; c: Copy; onPhoto: (src: string) => void }) {
   const [kind, setKind] = useState<Kind | "all">("all");
@@ -364,7 +359,6 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [open, setOpen] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
-  const mobile = useMobile();
   const c = copy[lang];
   const navIds = useMemo(() => ["trips", "day", "reviews", "gallery", "contacts"], []);
 
@@ -378,7 +372,7 @@ export default function Home() {
 
   const factPhotos = ["/images/harness.webp", "/images/captain.webp", "/images/chute-mountains.webp", "/images/marina2.webp"];
   const factPos = ["50% 30%", "50% 20%", "50% 35%", "50% 60%"];
-  const dominoItems = (mobile ? gallery.slice(0, 4) : gallery.slice(0, 6)).map(g => ({ src: g.src, w: g.w, h: g.h, title: g.cap[lang] }));
+  const dominoItems = gallery.map(g => ({ src: g.src, w: g.w, h: g.h, title: g.cap[lang] }));
 
   return (
     <>
@@ -425,7 +419,7 @@ export default function Home() {
               <p className="section-lede">{c.galLede}</p>
             </div>
           </div>
-          <DominoGallery items={dominoItems} cardWidth={mobile ? 150 : 220} cardHeight={mobile ? 400 : 590} gap={mobile ? 10 : 18} scrollLength={mobile ? 1100 : 1600} onSelect={setLightbox} />
+          <DominoGallery items={dominoItems} labels={lang === "ru" ? ["фотографий", "Предыдущие фото", "Следующие фото", "Пауза", "Продолжить"] : lang === "ka" ? ["ფოტო", "წინა ფოტოები", "შემდეგი ფოტოები", "პაუზა", "გაგრძელება"] : ["photographs", "Previous photos", "Next photos", "Pause", "Play"]} onSelect={setLightbox} />
         </section>
 
         <Contacts lang={lang} c={c} />
