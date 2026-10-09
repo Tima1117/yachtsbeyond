@@ -323,7 +323,7 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
 /* Scroll-directed marine scene, inspired by the Lycoris specimen prompt. */
 .voyage-hero{height:260svh;background:#070e1b;position:relative}.voyage-stage{height:100svh;min-height:660px;position:sticky;top:0;overflow:hidden;background:linear-gradient(140deg,#070d19,#0d2432 70%,#07101d);color:#f3eade;isolation:isolate}
 .voyage-halo{position:absolute;inset:-20%;background:radial-gradient(ellipse at 65% 37%,#4d899924,transparent 50%);pointer-events:none}
-.voyage-canvas{position:absolute;inset:0;z-index:2;cursor:grab;touch-action:pan-y}.voyage-canvas.dragging{cursor:grabbing}.voyage-canvas canvas{display:block}.voyage-poster{position:absolute;inset:0;transition:opacity 1s;pointer-events:none;filter:brightness(.35)}
+.voyage-canvas{position:absolute;inset:0;z-index:2;cursor:grab;touch-action:pan-y}.voyage-canvas.dragging{cursor:grabbing}.voyage-canvas canvas{display:block}.voyage-poster{position:absolute;inset:0;transition:opacity .35s;pointer-events:none;z-index:1}
 .voyage-type{position:absolute;top:11%;left:5%;font-family:var(--fd);font-size:clamp(90px,19vw,300px);font-weight:800;letter-spacing:-.065em;line-height:1;color:#f5e9d7;opacity:.8;z-index:1;pointer-events:none}.voyage-type.second{top:auto;bottom:18%;left:auto;right:4%;font-size:11.8vw;color:transparent;-webkit-text-stroke:1px #ded6c345}
 .voyage-shade{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(0deg,#070e1bf2,transparent 46%,transparent 80%,#070e1b88)}
 .voyage-meta{position:absolute;top:102px;left:4.2%;right:4.2%;display:flex;justify-content:space-between;gap:28px;z-index:4;pointer-events:none}.voyage-meta .eyebrow{font-size:9px;max-width:520px}.voyage-meta>span{font-size:10px;letter-spacing:.08em;color:#d0d8db99}
@@ -334,3 +334,5 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
 @media(prefers-reduced-motion:reduce){.voyage-hero{height:100svh}.voyage-type,.voyage-copy,.voyage-poster{transition:none}.voyage-timeline{display:none}}
 
 .voyage-copy.final{isolation:isolate}.voyage-copy.final::before{content:"";position:absolute;inset:-22px -28px -25px;z-index:-1;border-radius:24px;background:rgba(7,14,27,.94);filter:blur(16px);pointer-events:none}
+
+.voyage-first-frame{width:100%;height:100%;object-fit:fill;display:block}.voyage-poster picture{display:block;width:100%;height:100%}

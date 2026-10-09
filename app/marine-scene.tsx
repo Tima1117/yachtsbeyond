@@ -1,10 +1,12 @@
 "use client";
 import {Canvas,useFrame} from "@react-three/fiber";
-import {Environment,Lightformer,RoundedBox} from "@react-three/drei";
+import {RoundedBoxGeometry} from "three/addons/geometries/RoundedBoxGeometry.js";
+import type {ReactNode} from "react";
 import {memo,useEffect,useMemo,useRef} from "react";
 import * as T from "three";
 export type MarineDrive={p:number;x:number;y:number;drag:number;reduced:boolean};
 const CORAL="#eea18e";
+function RoundedBox({args,radius,position,children}:{args:[number,number,number];radius:number;position:[number,number,number];children:ReactNode}){const geometry=useMemo(()=>new RoundedBoxGeometry(...args,2,radius),[args[0],args[1],args[2],radius]);return <mesh geometry={geometry} position={position}>{children}</mesh>}
 function hullGeometry(){
  const vs:number[]=[],ix:number[]=[];const n=64,m=28;
  for(let i=0;i<=n;i++){const u=i/n,x=-4+u*8;const beam=.98*(u<.65?.9+.1*Math.sin(u/.65*Math.PI/2):Math.sqrt(Math.max(.002,1-Math.pow((u-.65)/.35,1.4))));
@@ -13,7 +15,7 @@ function hullGeometry(){
  const g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(vs,3));g.setIndex(ix);g.computeVertexNormals();return g;
 }
 function deckShape(scale=1){const s=new T.Shape();s.moveTo(-4,-.88*scale);s.lineTo(-4,.88*scale);s.bezierCurveTo(-1.6,1.1*scale,2.6,1.15*scale,4,.04);s.quadraticCurveTo(4.08,0,4,-.04);s.bezierCurveTo(2.6,-1.15*scale,-1.6,-1.1*scale,-4,-.88*scale);return s;}
-function Tube({points,r=.018,color="#d6e3e6"}:{points:number[][];r?:number;color?:string}){const geom=useMemo(()=>new T.TubeGeometry(new T.CatmullRomCurve3(points.map(p=>new T.Vector3(...p))),48,r,6,false),[points,r]);return <mesh geometry={geom}><meshStandardMaterial color={color} metalness={.78} roughness={.22}/></mesh>}
+function Tube({points,r=.018,color="#d6e3e6"}:{points:number[][];r?:number;color?:string}){const geom=useMemo(()=>new T.TubeGeometry(new T.CatmullRomCurve3(points.map(p=>new T.Vector3(...p))),20,r,6,false),[points,r]);return <mesh geometry={geom}><meshStandardMaterial color={color} metalness={.78} roughness={.22}/></mesh>}
 function Yacht(){
  const hull=useMemo(hullGeometry,[]);const deck=useMemo(()=>new T.ExtrudeGeometry(deckShape(),{depth:.12,bevelEnabled:true,bevelSegments:2,steps:1,bevelSize:.04,bevelThickness:.025,curveSegments:32}),[]);
  const cabin=useMemo(()=>{const s=new T.Shape();s.moveTo(-1.95,.48);s.lineTo(-1.3,1.38);s.quadraticCurveTo(-1.2,1.48,-.9,1.48);s.lineTo(.85,1.45);s.lineTo(1.8,.48);s.closePath();return new T.ExtrudeGeometry(s,{depth:1.34,bevelEnabled:true,bevelSize:.055,bevelThickness:.04,bevelSegments:3})},[]);
@@ -63,26 +65,26 @@ float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(ha
 float swell(vec2 q){return sin(q.x*.7+q.y*.31+uTime*.8)*.17+sin(q.x*1.8-q.y*.76-uTime*.6)*.055+noise(q*3.+uTime*.12)*.075;}
 void main(){vec2 q=vWorld.xz;float eps=.055;float dx=(swell(q+vec2(eps,0.))-swell(q-vec2(eps,0.)))/(2.*eps);float dz=(swell(q+vec2(0.,eps))-swell(q-vec2(0.,eps)))/(2.*eps);vec3 n=normalize(vec3(-dx,1.,-dz));vec3 eye=normalize(cameraPosition-vWorld);vec3 sun=normalize(vec3(-.3,.8,.5));float spec=pow(max(0.,dot(n,normalize(eye+sun))),95.);float fres=pow(1.-max(0.,dot(n,eye)),3.);vec3 col=mix(vec3(.017,.065,.092),vec3(.07,.19,.24),fres);col+=vec3(.39,.57,.61)*spec*.48;col+=vec3(.015,.033,.039)*(swell(q)+.3);float trail=(1.-smoothstep(.1,1.1,abs(q.y)))*smoothstep(-17.,-5.,q.x)*(1.-smoothstep(-4.4,-3.,q.x));col+=vec3(.13,.24,.27)*trail*noise(vec2(q.x*2.+uTime*2.,q.y*8.))*.45;float alpha=1.-smoothstep(14.,25.,length(q));gl_FragColor=vec4(col,alpha);}`;
 function World({drive,onReady}:{drive:React.MutableRefObject<MarineDrive>;onReady:()=>void}){
- const yacht=useRef<T.Group>(null),chute=useRef<T.Group>(null),all=useRef<T.Group>(null);const look=useRef(new T.Vector3());
+ const yacht=useRef<T.Group>(null),chute=useRef<T.Group>(null),all=useRef<T.Group>(null);const look=useRef(new T.Vector3());const firstFrame=useRef(true);
  const water=useMemo(()=>new T.ShaderMaterial({vertexShader:waterVertex,fragmentShader:waterFragment,uniforms:{uTime:{value:0}},transparent:true,depthWrite:false}),[]);
- useEffect(()=>{onReady()},[onReady]);
+ useEffect(()=>{let frame=0;let next=0;frame=requestAnimationFrame(()=>{next=requestAnimationFrame(onReady)});return()=>{cancelAnimationFrame(frame);cancelAnimationFrame(next)}},[onReady]);
  useFrame((st,dt)=>{const d=drive.current;const t=d.reduced?0:st.clock.elapsedTime;const p=d.p;const orbit=d.drag+(d.reduced?0:d.x*.14);const k=Math.min(1,dt*4);
  const phase=Math.max(0,Math.min(1,(p-.3)/.5));const angle=.72+orbit+p*.85;const mobile=st.size.width<760;const distance=(mobile?23:15)-phase*(mobile?5:3);
  const target=new T.Vector3(Math.cos(angle)*distance,7+phase*5+(!d.reduced?d.y*.5:0),Math.sin(angle)*distance);
- st.camera.position.lerp(target,k);look.current.lerp(new T.Vector3(-.8-phase*2.3,(mobile?2.8:2.4)+phase*2.8,0),k);st.camera.lookAt(look.current);
+ const aim=new T.Vector3(-.8-phase*2.3,(mobile?2.8:2.4)+phase*2.8,0);if(firstFrame.current){st.camera.position.copy(target);look.current.copy(aim);firstFrame.current=false;}else{st.camera.position.lerp(target,k);look.current.lerp(aim,k);}st.camera.lookAt(look.current);
  if(yacht.current){yacht.current.rotation.z=Math.sin(t*.75)*.012;yacht.current.rotation.x=Math.sin(t*.65)*.015;yacht.current.position.y=Math.sin(t*.85)*.03;}
  if(chute.current){chute.current.rotation.z=-.16+Math.sin(t*.5)*.025;chute.current.rotation.x=Math.sin(t*.4)*.035;}
  if(all.current)all.current.position.x=0;water.uniforms.uTime.value=t;
  });
  return <group ref={all}>
   <ambientLight intensity={.8}/><directionalLight position={[5,12,7]} intensity={3} color="#ffead4"/><directionalLight position={[-8,4,-6]} intensity={2.5} color="#7aafc9"/>
-  <Environment resolution={128} frames={1}><Lightformer intensity={3} color="#f1ede5" scale={[12,6,1]} position={[0,8,0]} rotation={[-Math.PI/2,0,0]}/><Lightformer intensity={2} color="#89b5cc" scale={[15,4,1]} position={[0,3,-8]}/></Environment>
+  <hemisphereLight args={["#cbdfe9","#253344",.65]}/>
   <group ref={yacht}><Yacht/></group>
   <group position={[-4.4,6.2,-.4]} rotation={[.08,0,-.16]} ref={chute}><Parachute/></group>
   <Tube points={[[-3.65,.7,0],[-4.4,1.8,-.15],[-4.65,3.15,-.4]]} r={.012} color="#c2b7a5"/>
-  <mesh rotation={[-Math.PI/2,0,0]} position={[0,-.33,0]} material={water}><planeGeometry args={[60,60,160,160]}/></mesh>
+  <mesh rotation={[-Math.PI/2,0,0]} position={[0,-.33,0]} material={water}><planeGeometry args={[60,60,64,64]}/></mesh>
  </group>
 }
-function MarineScene({drive,onReady,active=true}:{drive:React.MutableRefObject<MarineDrive>;onReady:()=>void;active?:boolean}){return <Canvas frameloop={active?"always":"never"} dpr={[1,1.5]} camera={{position:[10,7,11],fov:42,near:.1,far:100}} gl={{alpha:true,antialias:true,powerPreference:"high-performance"}}><World drive={drive} onReady={onReady}/></Canvas>}
+function MarineScene({drive,onReady,active=true}:{drive:React.MutableRefObject<MarineDrive>;onReady:()=>void;active?:boolean}){return <Canvas frameloop={active?"always":"never"} dpr={[1,1.25]} camera={{position:[10,7,11],fov:42,near:.1,far:100}} gl={{alpha:true,antialias:true,powerPreference:"high-performance"}}><World drive={drive} onReady={onReady}/></Canvas>}
 
 export default memo(MarineScene);

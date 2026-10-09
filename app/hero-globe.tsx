@@ -1,10 +1,8 @@
 "use client";
-import dynamic from "next/dynamic";
-import Image from "next/image";
+
 import {useCallback,useEffect,useRef,useState} from "react";
 import {useMotionValueEvent,useReducedMotion,useScroll} from "framer-motion";
-import type {MarineDrive} from "./marine-scene";
-const MarineScene=dynamic(()=>import("./marine-scene"),{ssr:false});
+import MarineScene, {type MarineDrive} from "./marine-scene";
 export type GlobeCopy={eyebrow:string;top:string;lines:string[];lede:string;cta:string;cta2:string;rating:string;hint:string;badges:[string,string][];modes?:string[]};
 export function HeroGlobe({c,wa}:{c:GlobeCopy;wa:string}){
  const root=useRef<HTMLElement>(null);const reduced=useReducedMotion();const [ready,setReady]=useState(false);const [active,setActive]=useState(true);const [supported,setSupported]=useState(true);const [p,setP]=useState(0);const [dragging,setDragging]=useState(false);
@@ -24,7 +22,7 @@ export function HeroGlobe({c,wa}:{c:GlobeCopy;wa:string}){
    <div className="voyage-type" aria-hidden style={{transform:`translateX(${-p*18}vw) translateY(${-p*12}vh)`,opacity:1-p*.9}}>YACHTS</div>
    <div className="voyage-type second" aria-hidden style={{transform:`translateX(${p*20}vw)`,opacity:1-p*.8}}>&amp; BEYOND</div>
    <div className={`voyage-canvas${dragging?" dragging":""}`} onPointerDown={e=>{if(reduced)return;down.current=e.clientX;setDragging(true);e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{const r=e.currentTarget.getBoundingClientRect();drive.current.x=(e.clientX-r.left)/r.width-.5;drive.current.y=(e.clientY-r.top)/r.height-.5;if(down.current!==null){drive.current.drag+=(e.clientX-down.current)*.005;down.current=e.clientX}}} onPointerUp={()=>{down.current=null;setDragging(false)}} onPointerCancel={()=>{down.current=null;setDragging(false)}}>
-    <div className="voyage-poster" style={{opacity:ready&&supported?0:1}}><Image src="/images/mustang.webp" alt="" fill priority sizes="100vw" style={{objectFit:"cover"}}/></div>
+    <div className="voyage-poster" style={{opacity:ready&&supported?0:1}}><picture><source media="(max-width:760px)" srcSet="/images/scene-mobile.webp"/><img src="/images/scene-desktop.webp" alt="" fetchPriority="high" className="voyage-first-frame"/></picture></div>
     {supported&&<MarineScene drive={drive} onReady={loaded} active={active}/>}
    </div>
    <div className="voyage-shade"/>
