@@ -37,7 +37,7 @@ export function DominoGallery({ items, cardWidth = 220, cardHeight = 590, gap = 
 
   useLayoutEffect(() => {
     const el = root.current; if (!el) return;
-    const fit = () => { const avail = (el.clientWidth - 48 - gap * (items.length - 1)) / Math.max(1, items.length); setW(Math.max(72, Math.min(cardWidth, Math.floor(avail)))); };
+    const fit = () => { const avail = (el.clientWidth - 48 - gap * (items.length - 1)) / Math.max(1, items.length); setW(el.clientWidth <= 760 ? Math.max(150, cardWidth) : Math.max(72, Math.min(cardWidth, Math.floor(avail)))); };
     fit();
     const ro = new ResizeObserver(fit); ro.observe(el);
     return () => ro.disconnect();
@@ -97,7 +97,7 @@ export function DominoGallery({ items, cardWidth = 220, cardHeight = 590, gap = 
   return (
     <div ref={root} className="domino" style={{ height: `calc(100vh + ${scrollLength}px)` }}>
       <div className="domino-stage">
-        <div className="domino-row" role="list" style={{ gap, perspective: 1500, perspectiveOrigin: "50% -45%" }}>
+        <div className="domino-row" role="list" tabIndex={0} style={{ gap, perspective: 1500, perspectiveOrigin: "50% -45%" }}>
           {items.map((it, i) => (
             <div key={it.src} role="listitem" className="domino-slot" style={{ width: w, height: h }}>
               <div ref={el => { cards.current[i] = el; }} className="domino-card" style={{ transform: `rotateX(${standAngle}deg)` }}>

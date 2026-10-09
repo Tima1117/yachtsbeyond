@@ -14,7 +14,7 @@ const phonePretty = "+995 555 32 87 78";
 const waBase = "https://wa.me/995555328778";
 const placeUrl = "https://www.google.com/maps/place/Yachts+%26+Beyond/@41.6547929,41.6429517,17z/data=!4m6!3m5!1s0x406787b54d737c6f:0x43aea840dc73a3b7!8m2!3d41.6547929!4d41.6429517";
 const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=41.6547929,41.6429517&travelmode=walking";
-const mapEmbed = "https://www.openstreetmap.org/export/embed.html?bbox=41.6330%2C41.6490%2C41.6530%2C41.6610&layer=mapnik&marker=41.6548%2C41.6430";
+const mapEmbed = "https://maps.google.com/maps?q=41.6547929,41.6429517&z=16&output=embed";
 
 const copy = {
   en: {

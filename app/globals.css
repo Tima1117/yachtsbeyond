@@ -148,7 +148,7 @@ html[lang=ka] .ghero-line{font-size:clamp(24px,3vw,46px)}
 .price-note{font-size:12px;color:var(--muted);margin:26px 0 0}
 
 /* ─── Your hour (sticky + timeline) ───────────────────────────────────────── */
-.day{padding:60px 0 120px;background:linear-gradient(to bottom,var(--bg),var(--bg2))}
+.day{padding:60px 0 120px;background:linear-gradient(to bottom,var(--bg),var(--bg2));overflow-x:clip}
 .day-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:80px;align-items:start}
 .day-sticky{position:sticky;top:110px}
 .day-side .section-lede{margin-top:16px}
@@ -241,7 +241,7 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
 @media(max-width:960px){
   .header-cta span{display:none}
   .contacts-grid{grid-template-columns:1fr;gap:40px}
-  .day-grid{grid-template-columns:1fr;gap:40px}
+  .day-grid{grid-template-columns:minmax(0,1fr);gap:40px}
   .day-sticky{position:static}
 }
 @media(max-width:860px){
@@ -253,6 +253,11 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
 @media(max-width:760px){
   .container{width:calc(100% - 40px)}
   .site-header{height:66px;background:rgba(7,13,26,.97)}
+  .header-inner{width:calc(100% - 24px);gap:8px}
+  .header-actions{gap:6px}
+  .site-header .brand{font-size:16px;gap:5px}
+  .site-header .brand em{margin-left:0}
+  .languages button{min-width:28px}
   .nav{position:fixed;top:66px;left:0;right:0;background:rgba(7,13,26,.98);flex-direction:column;align-items:flex-start;padding:20px 24px;gap:18px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s,visibility 0s .25s;border-bottom:1px solid rgba(255,255,255,.08)}
   .nav.open{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s,visibility 0s}
   .nav a{font-size:14px;min-height:40px;display:flex;align-items:center}
@@ -281,10 +286,11 @@ footer{background:#040810;padding:26px 0;color:rgba(255,255,255,.5);font-size:13
   .day{padding:40px 0 80px}
   .day-list{padding-left:54px}
   .day-dot{left:-40px}
-  .day-stop{grid-template-columns:1fr;gap:4px;padding:20px 0}
+  .day-stop{grid-template-columns:minmax(0,1fr);gap:4px;padding:20px 0}
   .day-stop time{font-size:16px}
   .day-stop h3{font-size:19px}
-  .domino-row{padding:24px 12px}
+  .domino-row{padding:48px 24px;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;width:100%}
+  .domino-slot{scroll-snap-align:center}
   .book{padding:22px}
   .book-grid{grid-template-columns:1fr}
   .map-wrap{height:280px}
